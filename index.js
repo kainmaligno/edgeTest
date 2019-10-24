@@ -44,3 +44,57 @@ function  findSum(nums, k) {
  
  
     countOccurences("Purple People Eater")
+
+
+
+    /**
+     * @function countPeaks 
+     * @param array
+    * 3. Given an array of strictly positive integers, determine the number of elements that are greater than
+the adjacent elements (further known as peaks). If an adjacent element is an equal value, it would only
+count as a peak if the next divergent number is smaller than the current element. Assume that there are
+0 values outside of the bounds of the array, which may lead to a peak. e.g. [1, 2, 2, 3, 4, 3, 5, 3, 2, 1, 2,3, 3, 3, 2, 2, 1, 3] can be thought of as 0, [1, 2, 2, 3, 4, 3, 5, 3, 2, 1, 2, 3, 3, 3, 2, 2, 1, 3], 0 and would
+thus have the parenthesized peaks [1, 2, 2, 3, (4), 3, (5), 3, 2, 1, 2, (3, 3, 3), 2, 2, 1, (3)]
+    */
+
+   function countPeaks(arr) {
+    let peaksIndex = []
+    let counterPikes = 0
+    let lastIndex = arr.length-1
+    let firstIndex = 0
+    //check if it is more than 2 index
+    if(arr.length <= 2) return console.log("array must be larger");
+
+   //check if it is negative numbers
+   for(let i= 0; i <= arr.length; i++){
+   if(arr[i] < 0){
+     console.log(`There is some negative number in the array in  position ${i}`)
+     break
+   }
+     //conditional
+    if(arr[i] > arr[i - 1] && arr[i] > arr[i + 1]){
+        peaksIndex.push(i)
+        
+        counterPikes += 1
+    }else if(arr[i] === arr[i-1] && arr[i] === arr[i + 1]){
+      peaksIndex.push(i)
+      counterPikes += 1
+    } 
+   }
+     if(arr[arr.length-1] > arr[arr.length-2]){
+      peaksIndex.push(lastIndex)
+      counterPikes += 1
+      console.log(arr[0])
+    }
+    if(arr[0] > arr[1]){
+      peaksIndex = [0, ...peaksIndex]
+     counterPikes += 1
+    }
+   
+      console.log(peaksIndex)
+      console.log(counterPikes)
+    
+    
+}
+countPeaks([1, 2, 2, 3, 4, 3, 5, 3, 2, 1, 2, 3, 3, 3, 2, 2, 1, 3])
+
